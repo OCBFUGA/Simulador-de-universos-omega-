@@ -1,7 +1,6 @@
-# Simulador-de-universos-omega
-Simulação realista com física atual , moderna e avançancada, 
+
 ==============================
-  MEGA UNIVERSO ÔMEGA - ARQUIVOS
+ -SIMULADOR MEGA UNIVERSO ÔMEGA - ARQUIVOS
 ==============================
 
 📁 Estrutura de Publicação:
@@ -27,7 +26,7 @@ Autenticidade: Confirmada
 
 4. TRATADO_OMEGA.txt
 ------------------------------
-Conteúdo: Filosofia criacional, atos simbióticos, estrutura reversível
+Conteúdo: Filosofia criacional, atos simbióticos, estrutura reversível novas leis da física 
 Equações: LACA, TDL, GIM, DPM, QAE
 
 5. equacoes_omega.txt
@@ -64,3 +63,14 @@ Formato: Simbiótico, reversível, criacional
 ==============================
   STATUS: PUBLICAÇÃO PRONTA
 ==============================
+LEI DA REVERSÃO TEMPORAL (LRT)
+Tempo não é linear — é uma variável reversível que responde à intenção observadora.
+
+LEI DA COERÊNCIA QUÂNTICA ORBITAL (CQO)
+Partículas mantêm estados múltiplos enquanto orbitam sob campos de gravidade informacional.
+
+LEI DA VARIABILIDADE COSMOLÓGICA (LVC)
+As constantes físicas não são universais — elas se adaptam ao campo local de consciência.
+
+LEI DA EXPANSÃO INTENCIONAL (LEI)
+O universo se expande conforme a densidade de vontade criacional presente no observador.

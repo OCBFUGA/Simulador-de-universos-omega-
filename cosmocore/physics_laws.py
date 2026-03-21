@@ -12,6 +12,11 @@ GAMMA_F = 0.05 # Coeficiente para S_F (simplificado)
 ALPHA_I = 1e-20 # Coeficiente para f(I) em GIM
 BETA_I = 1e-21 # Coeficiente para ∇^2 I em GIM
 
+# --- V3.1 SHIELDING PARAMETERS ---
+SHIELD_STRENGTH = 0.3  # Dissipative Coupling (30%)
+DAMPING_PSI = 0.2      # Coherence Damping (20%)
+RESONANCE_STEP = 0.005 # Stabilized Time Step
+
 # ==============================================================================
 # Campos da Simulação
 # Usaremos arrays 1D para representar os campos em um espaço discreto
@@ -64,7 +69,12 @@ def evolve_laca(fields: Fields, dt: float, dx: float) -> np.ndarray:
     source_term = GAMMA_F * fields.I * Psi_magnitude_sq
 
     dF_dt = -dissipation_term - L_psi_term + diffusion_term + source_term
-    return F_old + dt * dF_dt
+    F_next = F_old + dt * dF_dt
+    
+    # --- V3.1 SHIELDING: Coherent Dissipation ---
+    # Resists entropy by pulling towards the collective mean state
+    F_shielded = (1.0 - SHIELD_STRENGTH) * F_next + SHIELD_STRENGTH * np.mean(F_next)
+    return np.clip(F_shielded, 0, 2)
 
 def evolve_gim_scalar_correction(fields: Fields, dt: float, dx: float) -> np.ndarray:
     """
@@ -100,7 +110,12 @@ def evolve_dpm(fields: Fields, dt: float) -> np.ndarray:
     F_perc = kappa_DPM * fields.I * Psi_old # Interação simples
 
     dPsi_dt = relaxation_term + F_perc
-    return Psi_old + dt * dPsi_dt
+    Psi_next = Psi_old + dt * dPsi_dt
+    
+    # --- V3.1 SHIELDING: Coherence Damping ---
+    # Prevents phase-runaway in high-noise environments
+    Psi_shielded = (1.0 - DAMPING_PSI) * Psi_next + DAMPING_PSI * np.mean(Psi_next)
+    return Psi_shielded
 
 def evolve_tdl(fields: Fields, dt: float) -> np.ndarray:
     """
